@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contador de Dias</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #111;
+      color: #0f0;
+      flex-direction: column;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    p {
+      margin-top: 10px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="contador">Carregando...</h1>
+  <p>dias desde o início</p>
+
+  <script>
+    async function atualizarContador() {
+      const res = await fetch('/contador');
+      const data = await res.json();
+      document.getElementById('contador').textContent = data.dias;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 60000 * 10); // atualiza a cada 10 minutos
+  </script>
+</body>
+</html>
