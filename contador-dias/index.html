@@ -28,16 +28,26 @@
 <body>
   <h1 id="contador">Carregando...</h1>
   <p>dias desde o início</p>
-   <script src="server.js" type="module"></script>
+
   <script>
-    async function atualizarContador() {
-      const res = await fetch('/contador');
-      const data = await res.json();
-      document.getElementById('contador').textContent = data.dias;
+    // ✅ Configure aqui a data de início
+    const dataInicio = new Date("2024-03-24");
+
+    // Função que calcula os dias desde a data de início
+    function diasDesdeInicio() {
+      const agora = new Date();
+      const diffMs = agora - dataInicio;
+      return Math.floor(diffMs / (1000 * 60 * 60 * 24));
     }
 
+    // Atualiza o contador no HTML
+    function atualizarContador() {
+      document.getElementById('contador').textContent = diasDesdeInicio();
+    }
+
+    // Chama imediatamente e depois atualiza a cada hora
     atualizarContador();
-    setInterval(atualizarContador, 60000 * 10); // atualiza a cada 10 minutos
+    setInterval(atualizarContador, 1000 * 60 * 60);
   </script>
 </body>
 </html>
