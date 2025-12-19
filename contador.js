@@ -10,7 +10,7 @@
 
     // Atualiza o contador no HTML
     function atualizarContador() {
-      document.getElementById('contador').textContent = diasDesdeInicio();
+      document.getElementById('conta').textContent = diasDesdeInicio();
     }
 
     // Chama imediatamente e depois atualiza a cada hora
